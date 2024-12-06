@@ -42,9 +42,22 @@ getDataForm.addEventListener("submit", async (e) => {
 
 
 async function getWeatherData(lat,long) {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current=temperature_2m,apparent_temperature,is_day,rain,wind_speed_10m`);
-    const data = await response.json();
-    console.log(response, data);
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current=temperature_2m,apparent_temperature,is_day,rain,wind_speed_10m`
+    const options = {
+        method:"GET",
+        headers:{
+            "api-key":"favdsjkl"
+        }
+    }
+    try{
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(response, data);
+    }
+    catch(error){
+        console.log(error);
+    }
+    
     
     // Return the data so it can be used in the event listener
     return data;
